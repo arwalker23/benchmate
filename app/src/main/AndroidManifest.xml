@@ -23,7 +23,7 @@
         <activity android:name=".Reagents" />
         <activity android:name=".Notes" />
         <activity android:name=".Procedure" />
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Settings" />
     </application>
 
 </manifest>
