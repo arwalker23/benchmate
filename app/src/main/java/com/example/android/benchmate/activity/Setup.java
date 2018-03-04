@@ -16,10 +16,13 @@ public class Setup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setup);
 
         // Initialize experiment object to allow adding of new Reagent objects to the reagents list
         Experiment experiment = new Experiment();
+
+        setContentView(R.layout.activity_setup);
+
+
 
         buttonOne = (Button)  findViewById(R.id.button1);
         // buttonTwo = (Button)  findViewById(R.id.button2);
