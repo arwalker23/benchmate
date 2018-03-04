@@ -1,22 +1,26 @@
-package com.example.android.benchmate;
+package com.example.android.benchmate.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class Reagents extends Activity {
+import com.example.android.benchmate.R;
 
-    private Button buttonBack;
+public class Settings extends AppCompatActivity {
 
+    private Button buttonTwo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reagents);
-        buttonBack = (Button) findViewById(R.id.buttonBack);
+        setContentView(R.layout.activity_settings);
 
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+
+        buttonTwo = (Button) findViewById(R.id.buttonBack);
+
+
+        buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPlate();
@@ -27,6 +31,5 @@ public class Reagents extends Activity {
 
     public void openPlate() {
         Intent intent = new Intent(this, Plate.class);
-        startActivity(intent);
-    }
+        startActivity(intent);}
 }

@@ -1,7 +1,9 @@
-package com.example.android.benchmate;
+package com.example.android.benchmate.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.android.benchmate.R;
 
 public class Notes extends AppCompatActivity {
 

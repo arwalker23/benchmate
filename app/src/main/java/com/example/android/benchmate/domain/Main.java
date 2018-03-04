@@ -1,4 +1,4 @@
-package com.example.android.benchmate;
+package com.example.android.benchmate.domain;
 
 public class Main {
 

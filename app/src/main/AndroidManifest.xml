@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Setup" />
-        <activity android:name=".Load" />
-        <activity android:name=".AddReagent" />
-        <activity android:name=".Plate" />
-        <activity android:name=".Reagents" />
-        <activity android:name=".Notes" />
-        <activity android:name=".Procedure" />
-        <activity android:name=".Settings" />
+        <activity android:name=".activity.Setup" />
+        <activity android:name=".activity.Load" />
+        <activity android:name=".activity.AddReagent" />
+        <activity android:name=".activity.Plate" />
+        <activity android:name=".activity.Reagents" />
+        <activity android:name=".activity.Notes" />
+        <activity android:name=".activity.Procedure" />
+        <activity android:name=".activity.Settings" />
     </application>
 
 </manifest>

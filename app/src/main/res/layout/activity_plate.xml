@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.benchmate.Plate"
+    tools:context="com.example.android.benchmate.activity.Plate"
     tools:layout_editor_absoluteY="81dp">
 
 
@@ -69,6 +69,7 @@
         android:layout_height="20dp"
         android:layout_marginBottom="472dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="  A         B         C        D        E        F        G        H        I         J"
         app:layout_constraintBottom_toBottomOf="parent"

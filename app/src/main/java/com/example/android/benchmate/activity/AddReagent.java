@@ -1,4 +1,4 @@
-package com.example.android.benchmate;
+package com.example.android.benchmate.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,36 +6,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Load extends AppCompatActivity {
+import com.example.android.benchmate.R;
+
+public class AddReagent extends AppCompatActivity {
 
     private Button buttonOne, buttonTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_load);
-        buttonOne = (Button)  findViewById(R.id.button1);
-        buttonTwo = (Button)  findViewById(R.id.button2);
+        setContentView(R.layout.activity_add_reagent);
+
+        buttonOne = (Button)  findViewById(R.id.buttonsave);
+        buttonTwo = (Button)  findViewById(R.id.buttonback);
 
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPlate();
+                openSetup();
             }
         });
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainActivity();
+                openSetup2();
             }
         });
     }
-    public void openPlate(){
-        Intent intent = new Intent(this, Plate.class);
+    public void openSetup(){
+        Intent intent = new Intent(this, Setup.class);
         startActivity(intent);
     }
-    public void openMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+    public void openSetup2(){
+        Intent intent = new Intent(this, Setup.class);
         startActivity(intent);
     }
 }
