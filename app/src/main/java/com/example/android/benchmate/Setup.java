@@ -14,6 +14,7 @@ public class Setup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
+        Experiment experiment = new Experiment();
 
         buttonOne = (Button)  findViewById(R.id.button1);
         // buttonTwo = (Button)  findViewById(R.id.button2);

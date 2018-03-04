@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">benchmate</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+    <string name="reagent_name">Reagent Name</string>
+    <string name="amount">Amount</string>
+    <string name="units">Units</string>
 </resources>

@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Experiment {
-    private String experimentID;//todo remove me if we are only using files, no db
     private String experimentName;
     private List<Reagent> reagents;
 
 
-    public Experiment(String experimentID, String experimentName) {
+    public Experiment(String experimentName) {
         this.experimentName = experimentName;
-        this.experimentID = experimentID;
+        this.reagents = new ArrayList<>();
+    }
+
+    public Experiment() {
+        this.experimentName = "unnamed";
         this.reagents = new ArrayList<>();
     }
 
@@ -44,14 +47,6 @@ public class Experiment {
         return reagents;
     }
 
-    public String getExperimentID() {
-        return experimentID;
-    }
-
-    public void setExperimentID(String experimentID) {
-        this.experimentID = experimentID;
-    }
-
     public void setExperimentName(String experimentName) {
         this.experimentName = experimentName;
     }
@@ -78,7 +73,6 @@ public class Experiment {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Experiment{");
-        sb.append("experimentID='").append(experimentID).append('\'');
         sb.append(", experimentName='").append(experimentName).append('\'');
         sb.append(", reagents=").append(reagents);
         sb.append('}');

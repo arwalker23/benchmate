@@ -1,7 +1,6 @@
 package com.example.android.benchmate;
 
 public class Reagent {
-    private String reagentID;//todo remove me if we are only using files, no db
     private String name;
     private UnitOfMeasure unitOfMeasure;
 
@@ -20,14 +19,6 @@ public class Reagent {
 
     public String printCSV() {
         return this.name + "," + "," + this.unitOfMeasure.name();
-    }
-
-    public String getReagentID() {
-        return reagentID;
-    }
-
-    public void setReagentID(String reagentID) {
-        this.reagentID = reagentID;
     }
 
     public void setName(String name) {
@@ -75,7 +66,6 @@ public class Reagent {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Reagent{");
-        sb.append("reagentID='").append(reagentID).append('\'');
         sb.append(", name='").append(name).append('\'');
         sb.append(", unitOfMeasure=").append(unitOfMeasure);
         sb.append('}');
