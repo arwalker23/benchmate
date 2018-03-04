@@ -37,4 +37,28 @@ public class ExperimentKey {
         sb.append('}');
         return sb.toString();
     }
+
+    public String getExperimentName() {
+        return experimentName;
+    }
+
+    public void setExperimentName(String experimentName) {
+        this.experimentName = experimentName;
+    }
+
+    public String getReagentName() {
+        return reagentName;
+    }
+
+    public void setReagentName(String reagentName) {
+        this.reagentName = reagentName;
+    }
+
+    public Well getWell() {
+        return well;
+    }
+
+    public void setWell(Well well) {
+        this.well = well;
+    }
 }

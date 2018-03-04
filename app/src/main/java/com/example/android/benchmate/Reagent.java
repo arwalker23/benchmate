@@ -17,10 +17,6 @@ public class Reagent {
         return name;
     }
 
-    public String printCSV() {
-        return this.name + "," + "," + this.unitOfMeasure.name();
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -59,7 +55,7 @@ public class Reagent {
             //todo: enhance me for each field, with some error message and put null?
             reagent.setUnitOfMeasure(null);
         }
-        //todo:implement me, parsing csv
+        //todo: implement me, parsing csv
         return reagent;
     }
 

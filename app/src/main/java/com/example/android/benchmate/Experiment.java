@@ -13,6 +13,8 @@ public class Experiment {
         this.reagents = new ArrayList<>();
     }
 
+    // default constructor with no parameters that gets called when Setup screen is created, after
+    // "New Experiment" button is pressed on main screen, or when experiment is loaded from file
     public Experiment() {
         this.experimentName = "unnamed";
         this.reagents = new ArrayList<>();

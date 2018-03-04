@@ -8,7 +8,7 @@ public class Main {
         Reagent templateDNA = new Reagent("Template DNA");
         Reagent primers = new Reagent("Primers");
         Reagent dNTPs = new Reagent("dNTPs");
-        Experiment basicPCR = new Experiment("001", "PCR");
+        Experiment basicPCR = new Experiment("Example PCR");
 
         basicPCR.addReagent(water, UnitOfMeasure.MICROLITRE);
         basicPCR.addReagent(PCRBuffer, UnitOfMeasure.MICROLITRE);
@@ -17,12 +17,5 @@ public class Main {
         basicPCR.addReagent(dNTPs, UnitOfMeasure.MICROLITRE);
 
         basicPCR.printExperiment();
-
-//        String[] wellNames = {"A", "B", "C", "D", "E", "F", "G", "H"};
-//        for(String well : wellNames) {
-//            for(int i = 1; i < 13; i++) {
-//                System.out.print(well + i + ", ");
-//            }
-//        }
     }
 }
