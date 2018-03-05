@@ -12,7 +12,7 @@ import com.example.android.benchmate.R;
 
 public class AddReagent extends AppCompatActivity {
 
-    private Button buttonOne, buttonTwo;
+    private Button buttonSave, buttonBack;
     private Spinner spinnerUnits;
 
     @Override
@@ -20,8 +20,8 @@ public class AddReagent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reagent);
 
-        buttonOne = (Button)  findViewById(R.id.buttonsave);
-        buttonTwo = (Button)  findViewById(R.id.buttonback);
+        buttonSave = (Button)  findViewById(R.id.buttonsave);
+        buttonBack = (Button)  findViewById(R.id.buttonback);
 
         // Create spinner for units dropdown selection
         spinnerUnits = (Spinner) findViewById(R.id.spinnerUnits);
@@ -31,13 +31,13 @@ public class AddReagent extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUnits.setAdapter(adapter);
 
-        buttonOne.setOnClickListener(new View.OnClickListener() {
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSetup();
             }
         });
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSetup2();

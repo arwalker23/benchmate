@@ -1,17 +1,19 @@
 package com.example.android.benchmate.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.android.benchmate.domain.Experiment;
 import com.example.android.benchmate.R;
 
 public class Setup extends AppCompatActivity {
 
-    private Button buttonOne, buttonThree;
+    private Button buttonAddReagent, buttonStart, buttonAddProcedure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,30 +25,38 @@ public class Setup extends AppCompatActivity {
         setContentView(R.layout.activity_setup);
 
 
+        buttonAddReagent = (Button) findViewById(R.id.buttonAddReagent);
+        buttonAddProcedure = (Button) findViewById(R.id.buttonAddProcedure);
+        buttonStart = (Button) findViewById(R.id.buttonStart);
 
-        buttonOne = (Button)  findViewById(R.id.button1);
-        // buttonTwo = (Button)  findViewById(R.id.button2);
-        buttonThree = (Button)  findViewById(R.id.button3);
-
-        buttonOne.setOnClickListener(new View.OnClickListener() {
+        buttonAddReagent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openAddReagent();
             }
         });
-
-        buttonThree.setOnClickListener(new View.OnClickListener() {
+        buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPlate();
             }
         });
+
+        // TODO: implement openAddProcedure method and add AddProcedure screen if we want, or scrap procedure entirely
+        //        buttonAddProcedure.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openAddProcedure();
+//            }
+//        });
     }
-    public void openAddReagent(){
+
+    public void openAddReagent() {
         Intent intent = new Intent(this, AddReagent.class);
         startActivity(intent);
     }
-    public void openPlate(){
+
+    public void openPlate() {
         Intent intent = new Intent(this, Plate.class);
         startActivity(intent);
     }

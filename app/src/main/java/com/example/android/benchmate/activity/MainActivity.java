@@ -10,23 +10,23 @@ import com.example.android.benchmate.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonOne, buttonTwo;
+    private Button buttonNew, buttonLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonOne = (Button)  findViewById(R.id.button);
-        buttonTwo = (Button)  findViewById(R.id.button2);
+        buttonNew = (Button)  findViewById(R.id.buttonNew);
+        buttonLoad = (Button)  findViewById(R.id.buttonLoad);
 
-        buttonOne.setOnClickListener(new View.OnClickListener() {
+        buttonNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSetup();
             }
         });
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
+        buttonLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openLoad();

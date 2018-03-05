@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.165" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/new_experiment"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.574" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonLoad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/load_experiment"

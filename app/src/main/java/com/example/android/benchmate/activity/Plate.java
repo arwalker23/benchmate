@@ -43,7 +43,7 @@ public class Plate extends AppCompatActivity {
                 openProcedure();
             }
         });
-        
+
         // TODO: save data from classes into a CSV file
         buttonSaveCSV.setOnClickListener(new View.OnClickListener() {
             @Override
