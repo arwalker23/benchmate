@@ -164,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
         android:layout_marginTop="391dp"
-        android:text="@string/settings"
+        android:text="@string/save_as_csv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

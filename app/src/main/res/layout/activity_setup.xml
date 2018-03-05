@@ -74,7 +74,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
             android:ems="10"
-            android:hint="@{experiment.experimentName}"
+            android:hint="@string/experiment_name"
             android:inputType="textCapCharacters|textPersonName"
             app:layout_constraintBottom_toTopOf="@+id/button1"
             app:layout_constraintEnd_toEndOf="parent"

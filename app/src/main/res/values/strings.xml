@@ -16,6 +16,7 @@
     <string name="load_experiment">Load Experiment</string>
     <string name="load">Load</string>
     <string name="experiment_list">Experiments</string>
+    <string name="experiment_name">Experiment Name</string>
     <string-array name="units_array">
         <item>µL</item>
         <item>mL</item>
