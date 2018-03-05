@@ -1,17 +1,19 @@
 package com.example.android.benchmate.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.android.benchmate.R;
 
 public class Plate extends AppCompatActivity {
 
-    private Button buttonA, buttonSettings, buttonNotes, buttonProcedure;
+    private Button buttonA, buttonSaveCSV, buttonNotes, buttonProcedure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +21,7 @@ public class Plate extends AppCompatActivity {
         setContentView(R.layout.activity_plate);
 
         buttonA = (Button) findViewById(R.id.buttonA);
-        buttonSettings = (Button) findViewById(R.id.buttonSettings);
+        buttonSaveCSV = (Button) findViewById(R.id.buttonSaveCSV);
         buttonNotes = (Button) findViewById(R.id.buttonNotes);
         buttonProcedure = (Button) findViewById(R.id.buttonProcedure);
 
@@ -27,12 +29,6 @@ public class Plate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openReagents();
-            }
-        });
-        buttonSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSettings();
             }
         });
         buttonNotes.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +43,19 @@ public class Plate extends AppCompatActivity {
                 openProcedure();
             }
         });
+        
+        // TODO: save data from classes into a CSV file
+        buttonSaveCSV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = getApplicationContext();
+                CharSequence text = "Saving experiment state...";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        });
     }
 
     public void openReagents() {
@@ -54,10 +63,10 @@ public class Plate extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openSettings() {
-        Intent intent = new Intent(this, Settings.class);
-        startActivity(intent);
-    }
+//    public void openSettings() {
+//        Intent intent = new Intent(this, Settings.class);
+//        startActivity(intent);
+//    }
 
     public void openNotes() {
         Intent intent = new Intent(this, Notes.class);
