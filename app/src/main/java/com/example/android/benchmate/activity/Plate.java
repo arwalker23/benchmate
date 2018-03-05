@@ -49,7 +49,7 @@ public class Plate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
-                CharSequence text = "Saving experiment state...";
+                CharSequence text = "Experiment state saved";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(context, text, duration);

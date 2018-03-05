@@ -19,11 +19,18 @@ public class Setup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_setup);
+
         // Initialize experiment object to allow adding of new Reagent objects to the reagents list
         Experiment experiment = new Experiment();
 
-        setContentView(R.layout.activity_setup);
-
+        // test toast to show that object was indeed created and exists with experimentName = "unnamed"
+//        Context context = getApplicationContext();
+//        CharSequence text = "Test of " + experiment.getExperimentName();
+//        int duration = Toast.LENGTH_SHORT;
+//
+//        Toast toast = Toast.makeText(context, text, duration);
+//        toast.show();
 
         buttonAddReagent = (Button) findViewById(R.id.buttonAddReagent);
         buttonAddProcedure = (Button) findViewById(R.id.buttonAddProcedure);
