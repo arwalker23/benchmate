@@ -2,9 +2,8 @@ package com.example.android.benchmate.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,17 +12,17 @@ import com.example.android.benchmate.R;
 
 public class Plate extends AppCompatActivity {
 
-    private Button buttonA, buttonSaveCSV, buttonNotes, buttonProcedure;
+    Button buttonA, buttonSaveCSV, buttonNotes, buttonProcedure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plate);
 
-        buttonA = (Button) findViewById(R.id.buttonA);
-        buttonSaveCSV = (Button) findViewById(R.id.buttonSaveCSV);
-        buttonNotes = (Button) findViewById(R.id.buttonNotes);
-        buttonProcedure = (Button) findViewById(R.id.buttonProcedure);
+        buttonA = findViewById(R.id.buttonA);
+        buttonSaveCSV = findViewById(R.id.buttonSaveCSV);
+        buttonNotes = findViewById(R.id.buttonNotes);
+        buttonProcedure = findViewById(R.id.buttonProcedure);
 
         buttonA.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Reagents extends Activity implements CompoundButton.OnCheckedChangeListener {
 
     int flag = 0;
-    private Button buttonBack, buttonSave;
+    Button buttonBack, buttonSave;
     ArrayList<String> selectedReagents = new ArrayList<>();
     ArrayList<String> retrievedSelectedReagents;
 

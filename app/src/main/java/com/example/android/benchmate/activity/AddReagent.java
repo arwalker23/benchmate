@@ -15,8 +15,8 @@ import com.example.android.benchmate.domain.Reagent;
 
 public class AddReagent extends AppCompatActivity {
 
-    private Button buttonSave, buttonBack;
-    private Spinner spinnerUnits;
+    Button buttonSave, buttonBack;
+    Spinner spinnerUnits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,11 @@ public class AddReagent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: implement getText from text boxes and bind body into Reagent object fields
-                saveReagent();
+
+                // TODO: pass Reagent object from onClick() back to Setup to add them to experiment class
+                Intent intent = new Intent(AddReagent.this, Setup.class);
+                startActivity(intent);
+
                 Context context = getApplicationContext();
                 CharSequence text = "Reagent saved.";
                 int duration = Toast.LENGTH_SHORT;
@@ -57,11 +61,7 @@ public class AddReagent extends AppCompatActivity {
             }
         });
     }
-    public void saveReagent(){
-        Intent intent = new Intent(this, Setup.class);
-        startActivity(intent);
-        // TODO: pass Reagent object from onClick() back to Setup to modify the experiment class
-    }
+
     public void cancelReagent(){
         Intent intent = new Intent(this, Setup.class);
         startActivity(intent);

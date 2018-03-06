@@ -10,14 +10,14 @@ import com.example.android.benchmate.R;
 
 public class Settings extends AppCompatActivity {
 
-    private Button buttonTwo;
+    Button buttonTwo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
 
-        buttonTwo = (Button) findViewById(R.id.buttonBack);
+        buttonTwo = findViewById(R.id.buttonBack);
 
 
         buttonTwo.setOnClickListener(new View.OnClickListener() {

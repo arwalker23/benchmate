@@ -1,28 +1,24 @@
 package com.example.android.benchmate.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.android.benchmate.domain.Experiment;
 import com.example.android.benchmate.R;
+import com.example.android.benchmate.domain.Experiment;
 
 public class Setup extends AppCompatActivity {
 
-    private Button buttonAddReagent, buttonStart, buttonAddProcedure;
+    Button buttonAddReagent, buttonStart, buttonAddProcedure;
+    Experiment experiment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_setup);
-
-        // Initialize experiment object to allow adding of new Reagent objects to the reagents list
-        Experiment experiment = new Experiment();
 
         // test toast to show that object was indeed created and exists with experimentName = "unnamed"
 //        Context context = getApplicationContext();
@@ -32,9 +28,9 @@ public class Setup extends AppCompatActivity {
 //        Toast toast = Toast.makeText(context, text, duration);
 //        toast.show();
 
-        buttonAddReagent = (Button) findViewById(R.id.buttonAddReagent);
-        buttonAddProcedure = (Button) findViewById(R.id.buttonAddProcedure);
-        buttonStart = (Button) findViewById(R.id.buttonStart);
+        buttonAddReagent = findViewById(R.id.buttonAddReagent);
+        buttonAddProcedure = findViewById(R.id.buttonAddProcedure);
+        buttonStart = findViewById(R.id.buttonStart);
 
         buttonAddReagent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +54,9 @@ public class Setup extends AppCompatActivity {
 //        });
     }
 
+    // TODO: modify intents to reside within buttons instead of external method
+
+    // TODO: use intents to pass Experiment object to future screens
     public void openAddReagent() {
         Intent intent = new Intent(this, AddReagent.class);
         startActivity(intent);
