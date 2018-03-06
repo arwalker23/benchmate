@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.android.benchmate.R;
+import com.example.android.benchmate.domain.Reagent;
 
 public class AddReagent extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class AddReagent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reagent);
+
+        Reagent reagent = new Reagent();
 
         // TODO: implement save reagent activity using data binding library
         buttonSave = (Button)  findViewById(R.id.buttonsave);
