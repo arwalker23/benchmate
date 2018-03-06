@@ -2,8 +2,8 @@ package com.example.android.benchmate.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,11 +26,11 @@ public class AddReagent extends AppCompatActivity {
         Reagent reagent = new Reagent();
 
         // TODO: implement save reagent activity using data binding library
-        buttonSave = (Button)  findViewById(R.id.buttonsave);
-        buttonBack = (Button)  findViewById(R.id.buttonback);
+        buttonSave = findViewById(R.id.buttonsave);
+        buttonBack = findViewById(R.id.buttonback);
 
         // Create spinner for units dropdown selection
-        spinnerUnits = (Spinner) findViewById(R.id.spinnerUnits);
+        spinnerUnits = findViewById(R.id.spinnerUnits);
         // Create ArrayAdapter using the units_array and default layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.units_array, android.R.layout.simple_spinner_item);
@@ -40,7 +40,8 @@ public class AddReagent extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSetup();
+                // TODO: implement getText from text boxes and bind body into Reagent object fields
+                saveReagent();
                 Context context = getApplicationContext();
                 CharSequence text = "Reagent saved.";
                 int duration = Toast.LENGTH_SHORT;
@@ -52,15 +53,16 @@ public class AddReagent extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSetup2();
+                cancelReagent();
             }
         });
     }
-    public void openSetup(){
+    public void saveReagent(){
         Intent intent = new Intent(this, Setup.class);
         startActivity(intent);
+        // TODO: pass Reagent object from onClick() back to Setup to modify the experiment class
     }
-    public void openSetup2(){
+    public void cancelReagent(){
         Intent intent = new Intent(this, Setup.class);
         startActivity(intent);
     }
