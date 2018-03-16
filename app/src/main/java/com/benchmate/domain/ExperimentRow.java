@@ -1,4 +1,4 @@
-package com.example.android.benchmate.domain;
+package com.benchmate.domain;
 
 public class ExperimentRow {
     private ExperimentKey key;

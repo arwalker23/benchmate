@@ -1,9 +1,9 @@
-package com.example.android.benchmate.activity;
+package com.benchmate.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.example.android.benchmate.R;
+import com.benchmate.R;
 
 public class Procedure extends AppCompatActivity {
 

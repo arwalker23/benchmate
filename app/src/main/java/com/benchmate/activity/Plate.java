@@ -1,4 +1,4 @@
-package com.example.android.benchmate.activity;
+package com.benchmate.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
-import com.example.android.benchmate.R;
+import com.benchmate.R;
 
 public class Plate extends AppCompatActivity {
 

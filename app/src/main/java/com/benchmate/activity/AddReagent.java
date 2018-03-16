@@ -1,4 +1,4 @@
-package com.example.android.benchmate.activity;
+package com.benchmate.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.android.benchmate.R;
-import com.example.android.benchmate.domain.Reagent;
+import com.benchmate.R;
+import com.benchmate.domain.Reagent;
 
 public class AddReagent extends AppCompatActivity {
 

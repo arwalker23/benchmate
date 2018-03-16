@@ -4,7 +4,7 @@
     <data>
         <variable
             name="reagent"
-            type="com.example.android.benchmate.domain.Reagent" />
+            type="com.benchmate.domain.Reagent" />
     </data>
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.benchmate.activity.AddReagent">
+    tools:context="com.benchmate.activity.AddReagent">
 
     <Button
         android:id="@+id/buttonsave"

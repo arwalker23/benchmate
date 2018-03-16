@@ -1,4 +1,4 @@
-package com.example.android.benchmate.domain;
+package com.benchmate.domain;
 
 import java.util.ArrayList;
 import java.util.List;

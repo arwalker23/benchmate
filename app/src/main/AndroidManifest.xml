@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.benchmate">
+    package="com.benchmate">
 
     <application
         android:allowBackup="true"
@@ -9,21 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.benchmate.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.Setup" />
-        <activity android:name=".activity.Load" />
-        <activity android:name=".activity.AddReagent" />
-        <activity android:name=".activity.Plate" />
-        <activity android:name=".activity.Reagents" />
-        <activity android:name=".activity.Notes" />
-        <activity android:name=".activity.Procedure" />
-        <activity android:name=".activity.Settings" />
+        <activity android:name="com.benchmate.activity.Setup" />
+        <activity android:name="com.benchmate.activity.Load" />
+        <activity android:name="com.benchmate.activity.AddReagent" />
+        <activity android:name="com.benchmate.activity.Plate" />
+        <activity android:name="com.benchmate.activity.Reagents" />
+        <activity android:name="com.benchmate.activity.Notes" />
+        <activity android:name="com.benchmate.activity.Procedure" />
+        <activity android:name="com.benchmate.activity.Settings" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.android.benchmate.activity;
+package com.benchmate.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.android.benchmate.R;
+import com.benchmate.R;
 
 import java.util.ArrayList;
 
