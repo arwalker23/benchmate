@@ -1,16 +1,28 @@
 package com.benchmate.domain;
 
-public class Reagent {
-    private String name;
-    private UnitOfMeasure unitOfMeasure;
+import java.io.Serializable;
 
-    public Reagent(String name) {
+public class Reagent implements Serializable{
+    private String name;
+    private double amount;
+    private String unitOfMeasure;
+
+    public Reagent(String name, double amount, String unitOfMeasure) {
         this.name = name;
-        //todo: not sure if it would be good to initialize a unitofmeasure
+        this.amount = amount;
+        this.unitOfMeasure = unitOfMeasure;
     }
 
     public Reagent() {//sometimes UI needs a null type
         //todo: revisit me after UI
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public String getName() {
@@ -21,11 +33,11 @@ public class Reagent {
         this.name = name;
     }
 
-    public UnitOfMeasure getUnitOfMeasure() {
+    public String getUnitOfMeasure() {
         return unitOfMeasure;
     }
 
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
+    public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
 
@@ -50,7 +62,7 @@ public class Reagent {
 
         reagent.setName(tokens[0]);
         try {
-            reagent.setUnitOfMeasure(UnitOfMeasure.valueOf(tokens[1]));
+            reagent.setUnitOfMeasure(tokens[1]);
         } catch (IllegalArgumentException ex) {
             //todo: enhance me for each field, with some error message and put null?
             reagent.setUnitOfMeasure(null);
@@ -66,5 +78,9 @@ public class Reagent {
         sb.append(", unitOfMeasure=").append(unitOfMeasure);
         sb.append('}');
         return sb.toString();
+    }
+
+    public String prettyPrint(){
+        return this.getAmount() + " " + this.getUnitOfMeasure() + " " + this.getName();
     }
 }

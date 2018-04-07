@@ -11,8 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.benchmate.R;
+import com.benchmate.domain.Experiment;
+import com.benchmate.domain.Reagent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reagents extends Activity implements CompoundButton.OnCheckedChangeListener {
 
@@ -26,6 +29,10 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reagents);
 
+        //        Retrieve experiment object from intent
+        Intent intent = getIntent();
+        final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
+
         // Handle if instanceState is saved
         if (savedInstanceState != null) {
             retrievedSelectedReagents = savedInstanceState.getStringArrayList("checkedReagents");
@@ -36,7 +43,9 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPlate();
+                Intent intent = new Intent(Reagents.this, Plate.class);
+                intent.putExtra("experiment", experiment);
+                startActivity(intent);
             }
         });
 
@@ -46,17 +55,20 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
             public void onClick(View v) {
                 Intent intent = new Intent(Reagents.this, Plate.class);
                 getIntent().putStringArrayListExtra("selectedFields", selectedReagents);
+                intent.putExtra("experiment", experiment);
                 startActivity(intent);
             }
         });
 
-        String[] reagents_array = getResources().getStringArray(R.array.units_array);
-        CheckBox[] checkboxArray = new CheckBox[reagents_array.length];
+//        String[] reagents_array = getResources().getStringArray(R.array.units_array);
+        List<Reagent> reagents_array = experiment.getReagents();
+        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()];
         LinearLayout checkboxLayout = findViewById(R.id.chkboxlyt);
 
+        // Generate checkboxes for each reagent
         for (int i = 0; i < checkboxArray.length; i++) {
             CheckBox checkbox = new CheckBox(getApplicationContext());
-            checkbox.setText(reagents_array[i]);
+            checkbox.setText(reagents_array.get(i).prettyPrint());
             checkbox.setTextSize(28);
             checkboxArray[i] = checkbox;
             checkboxLayout.addView(checkbox);
@@ -92,10 +104,5 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         flag = 1;
         savedState.putStringArrayList("selectedReagents", selectedReagents);
         savedState.putInt("savedflag", flag);
-    }
-
-    public void openPlate() {
-        Intent intent = new Intent(this, Plate.class);
-        startActivity(intent);
     }
 }

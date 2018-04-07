@@ -1,9 +1,10 @@
 package com.benchmate.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Experiment {
+public class Experiment implements Serializable{
     private String experimentName;
     private List<Reagent> reagents;
 
@@ -20,7 +21,7 @@ public class Experiment {
         this.reagents = new ArrayList<>();
     }
 
-    public boolean addReagent(Reagent reagent, UnitOfMeasure unitOfMeasure) {
+    public boolean addReagent(Reagent reagent) {
         if (reagents == null) {
             reagents = new ArrayList<>();
         }
@@ -29,7 +30,6 @@ public class Experiment {
             return false;
         }
 
-        reagent.setUnitOfMeasure(unitOfMeasure);
         reagents.add(reagent);
         return true;
     }

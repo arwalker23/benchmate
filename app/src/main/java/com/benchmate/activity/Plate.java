@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 
 import com.benchmate.R;
+import com.benchmate.domain.Experiment;
 
 public class Plate extends AppCompatActivity {
 
@@ -20,6 +21,10 @@ public class Plate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plate);
+
+        //        Retrieve experiment object from intent
+        Intent intent = getIntent();
+        final Experiment experiment = (Experiment)intent.getSerializableExtra("experiment");
 
         buttonSaveCSV = findViewById(R.id.buttonSaveCSV);
         buttonNotes = findViewById(R.id.buttonNotes);
@@ -54,9 +59,9 @@ public class Plate extends AppCompatActivity {
         String[] wellNames = getResources().getStringArray(R.array.well_names);
         GridLayout buttonLayout = findViewById(R.id.btnlyt);
         buttonLayout.setOrientation(GridLayout.VERTICAL);
+        // Generate buttons within the GridLayout for every well in the well_names string resource
         int i = 1;
         for (final String wellName : wellNames) {
-            // Generate buttons within the GridLayout for every well in the well_names string resource
             Button btn = new Button(this);
             btn.setId(i);
             final int id_ = btn.getId();
@@ -70,24 +75,22 @@ public class Plate extends AppCompatActivity {
             params.width = 115;
             btn.setLayoutParams(params);
             Button btn1 = findViewById(id_);
+
             // Set onClickListener for every button as it's generated
             btn1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Toast.makeText(view.getContext(),
                             "Opening well " + wellName, Toast.LENGTH_SHORT)
                             .show();
-                    openReagents();
+                    Intent intent = new Intent(Plate.this, Reagents.class);
+                    intent.putExtra("experiment", experiment);
+                    startActivity(intent);
                 }
 
             });
             i++;
         }
 
-    }
-
-    public void openReagents() {
-        Intent intent = new Intent(this, Reagents.class);
-        startActivity(intent);
     }
 
 //    public void openSettings() {

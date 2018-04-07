@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonsave" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/reagentName"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -53,13 +53,13 @@
         android:ems="10"
         android:hint="@string/reagent_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/reagentAmount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/reagentAmount"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@+id/spinnerUnits"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/reagentName" />
 
     <Spinner
         android:id="@+id/spinnerUnits"
@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonsave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/reagentAmount" />
 
 </android.support.constraint.ConstraintLayout>
 </layout>
