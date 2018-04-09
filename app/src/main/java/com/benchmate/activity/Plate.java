@@ -2,6 +2,7 @@ package com.benchmate.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class Plate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plate);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //        Retrieve experiment object from intent
         Intent intent = getIntent();
@@ -43,12 +45,12 @@ public class Plate extends AppCompatActivity {
             }
         });
 
-        // TODO: save data from classes into a CSV file
         buttonSaveCSV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 Toast.makeText(context, "Experiment state saved", Toast.LENGTH_SHORT).show();
+                // TODO: save data from classes into a CSV file
             }
         });
 
@@ -65,6 +67,7 @@ public class Plate extends AppCompatActivity {
             // Set button text and size
             btn.setText(wellName);
             btn.setTextSize(16);
+
             // Set button colour based on whether reagents have been checked or not
             if (experiment.getWells().get(wellName).getSelectedReagents().contains(true)) {
                 if (experiment.getWells().get(wellName).getSelectedReagents().contains(false)) {
@@ -75,6 +78,8 @@ public class Plate extends AppCompatActivity {
             } else {
                 btn.setBackgroundColor(Color.rgb(255, 0, 0));
             }
+
+            // Add to layout with custom parameters (size)
             buttonLayout.addView(btn);
             GridLayout.LayoutParams params = (GridLayout.LayoutParams) btn.getLayoutParams();
             params.height = 115;
@@ -100,11 +105,6 @@ public class Plate extends AppCompatActivity {
         }
 
     }
-
-//    public void openSettings() {
-//        Intent intent = new Intent(this, Settings.class);
-//        startActivity(intent);
-//    }
 
     public void openNotes() {
         Intent intent = new Intent(this, Notes.class);

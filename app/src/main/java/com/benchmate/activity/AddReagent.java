@@ -29,18 +29,13 @@ public class AddReagent extends AppCompatActivity {
         final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
 
         // Toast to debug
-//        Context context = getApplicationContext();
-//        CharSequence text = "Experiment successfully passed: " + experiment.getExperimentName();
-//        int duration = Toast.LENGTH_SHORT;
-//
-//        Toast toast = Toast.makeText(context, text, duration);
-//        toast.show();
+//        Toast.makeText(this, "Experiment successfully passed: " + experiment.getExperimentName(),
+//                Toast.LENGTH_SHORT).show();
 
         buttonSave = findViewById(R.id.buttonsave);
         buttonBack = findViewById(R.id.buttonback);
-
-        // Create spinner for units dropdown selection
         spinnerUnits = findViewById(R.id.spinnerUnits);
+
         // Create ArrayAdapter using the units_array and default layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.units_array, android.R.layout.simple_spinner_item);
@@ -69,26 +64,21 @@ public class AddReagent extends AppCompatActivity {
                 Reagent reagent = new Reagent(name, amount, units);
                 experiment.addReagent(reagent);
 
-                // Toast to debug
-//                Context context = getApplicationContext();
-//                CharSequence text = "Reagent saved: " + reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " + reagent.getName();
-//                int duration = Toast.LENGTH_SHORT;
-//
-//                Toast toast = Toast.makeText(context, text, duration);
-//                toast.show();
-
-                // Pass Reagent object from onClick() back to Setup to add them to experiment class
+                // Pass experiment object back
                 Intent intent = new Intent(AddReagent.this, Setup.class);
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
+                finish();
             }
         });
+
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddReagent.this, Setup.class);
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
+                finish();
             }
         });
     }

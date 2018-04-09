@@ -7,11 +7,9 @@ import java.util.ArrayList;
  * Created by Mihai on 4/7/2018.
  */
 
-public class Well implements Serializable{
+public class Well implements Serializable {
     private String name;
     private ArrayList<Boolean> selectedReagents;
-
-    // TODO: modify constructor for Well to work with Reagents screen save button
 
     public Well(String name, ArrayList<Boolean> selectedReagents) {
         this.name = name;

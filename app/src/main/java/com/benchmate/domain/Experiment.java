@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-public class Experiment implements Serializable{
+public class Experiment implements Serializable {
     private String experimentName;
     private List<Reagent> reagents;
-    private TreeMap<String, Well> wells; // TODO: add method for adding new wells to map
+    private TreeMap<String, Well> wells;
 
     // TODO: remove this constructor if unused
 //    public Experiment(String experimentName) {
@@ -19,7 +19,7 @@ public class Experiment implements Serializable{
     // default constructor with no parameters that gets called when Setup screen is created, after
     // "New Experiment" button is pressed on main screen, or when experiment is loaded from file
     public Experiment() {
-        this.experimentName = "unnamed";
+        this.experimentName = "";
         this.reagents = new ArrayList<>();
         this.wells = new TreeMap<>();
     }
@@ -36,14 +36,6 @@ public class Experiment implements Serializable{
         reagents.add(reagent);
         return true;
     }
-
-    // TODO: remove
-//    public void printExperiment() {
-//        System.out.println("Printing experiment " + this.experimentName);
-//        for (Reagent reagent : reagents) {
-//            System.out.println(reagent.toString());
-//        }
-//    }
 
     public String getExperimentName() {
         return experimentName;
@@ -67,10 +59,10 @@ public class Experiment implements Serializable{
 
     public void initWells() {
         ArrayList<Boolean> checkedReagents = new ArrayList<Boolean>();
-        for(int i = 0; i < reagents.size(); i++){
+        for (int i = 0; i < reagents.size(); i++) {
             checkedReagents.add(false);
         }
-        for(WellEnum well : WellEnum.values()){
+        for (WellEnum well : WellEnum.values()) {
             Well newWell = new Well(well.name(), checkedReagents);
             wells.put(well.name(), newWell);
         }

@@ -2,6 +2,7 @@ package com.benchmate.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +22,8 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
 
     int flag = 0;
     Button buttonBack, buttonSave;
-    ArrayList<String> selectedReagents = new ArrayList<>();
-    ArrayList<String> retrievedSelectedReagents;
+//    ArrayList<String> selectedReagents = new ArrayList<>();
+//    ArrayList<String> retrievedSelectedReagents;
     ArrayList<Boolean> checkedReagents;
     ArrayList<CheckBox> checkboxArray = new ArrayList<>();
 
@@ -30,6 +31,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reagents);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Retrieve experiment object from intent
         Intent intent = getIntent();
@@ -43,7 +45,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
 
         // Handle if instanceState is saved
         if (savedInstanceState != null) {
-            retrievedSelectedReagents = savedInstanceState.getStringArrayList("checkedReagents");
+            checkedReagents = (ArrayList<Boolean>) savedInstanceState.getSerializable("checkedReagents");
             flag = savedInstanceState.getInt("savedflag");
         }
 
@@ -73,7 +75,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
 
 //        String[] reagents_array = getResources().getStringArray(R.array.units_array); // TODO: remove
         List<Reagent> reagents_array = experiment.getReagents();
-//        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()];
+//        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()]; // TODO: remove
         LinearLayout checkboxLayout = findViewById(R.id.chkboxlyt);
 
         // Generate checkboxes for each reagent
@@ -90,10 +92,10 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
 
         // If there were previously saved checkboxes that the user ticked before, check them again
         if (flag != 0) {
-            for(int i = 0; i < checkboxArray.size(); i++) {
+            for (int i = 0; i < checkboxArray.size(); i++) {
                 checkboxArray.get(i).setChecked(checkedReagents.get(i));
             }
-//            for (CheckBox checkbox : checkboxArray) {
+//            for (CheckBox checkbox : checkboxArray) { TODO: remove
 ////                for (int i = 0; i < retrievedSelectedReagents.size(); i++) {
 ////                    if ((checkbox.getText() + "").equals(retrievedSelectedReagents.get(i))) {
 ////                        checkbox.toggle();
@@ -103,20 +105,15 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         }
     }
 
-//    public void updateCheckedReagents(){
-//        for(CheckBox checkbox : checkboxArray);
-//    }
-
     public void onCheckedChanged(CompoundButton checkbox, boolean isChecked) {
-        String checkedText = checkbox.getText() + "";
+//        String checkedText = checkbox.getText() + "";
 
         if (isChecked) {
-            selectedReagents.add(checkedText);
+//            selectedReagents.add(checkedText);
             checkedReagents.set(checkbox.getId(), true);
-
 //            Toast.makeText(this, cb.getText() + " was selected!", Toast.LENGTH_SHORT).show();
         } else {
-            selectedReagents.remove(checkedText);
+//            selectedReagents.remove(checkedText);
             checkedReagents.set(checkbox.getId(), false);
 //            Toast.makeText(this, cb.getText() + " was not selected!", Toast.LENGTH_SHORT).show();
         }
@@ -125,7 +122,8 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
     public void onSaveInstanceState(Bundle savedState) {
         super.onSaveInstanceState(savedState);
         flag = 1;
-        savedState.putStringArrayList("selectedReagents", selectedReagents);
+        savedState.putSerializable("checkedReagents", checkedReagents);
+//        savedState.putStringArrayList("selectedReagents", selectedReagents);
         savedState.putInt("savedflag", flag);
     }
 }
