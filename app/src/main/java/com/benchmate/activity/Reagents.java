@@ -23,15 +23,23 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
     Button buttonBack, buttonSave;
     ArrayList<String> selectedReagents = new ArrayList<>();
     ArrayList<String> retrievedSelectedReagents;
+    ArrayList<Boolean> checkedReagents;
+    ArrayList<CheckBox> checkboxArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reagents);
 
-        //        Retrieve experiment object from intent
+        // Retrieve experiment object from intent
         Intent intent = getIntent();
         final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
+        // Retrieve name of well so Reagents knows which Well object to modify
+        final String wellName = intent.getStringExtra("wellName");
+        // Debug toast
+        Toast.makeText(this, "Now viewing well " + experiment.getWells().get(wellName).getName(), Toast.LENGTH_SHORT).show();
+        // Retrieve checked boxes from experiment class TreeMap "wells"
+        checkedReagents = new ArrayList<>(experiment.getWells().get(wellName).getSelectedReagents());
 
         // Handle if instanceState is saved
         if (savedInstanceState != null) {
@@ -46,6 +54,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
                 Intent intent = new Intent(Reagents.this, Plate.class);
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -54,48 +63,62 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Reagents.this, Plate.class);
-                getIntent().putStringArrayListExtra("selectedFields", selectedReagents);
+                // Handling for selectedFields array, can update the Experiment object TreeMap "wells" accordingly
+                experiment.getWells().get(wellName).setSelectedReagents(checkedReagents);
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
+                finish();
             }
         });
 
-//        String[] reagents_array = getResources().getStringArray(R.array.units_array);
+//        String[] reagents_array = getResources().getStringArray(R.array.units_array); // TODO: remove
         List<Reagent> reagents_array = experiment.getReagents();
-        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()];
+//        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()];
         LinearLayout checkboxLayout = findViewById(R.id.chkboxlyt);
 
         // Generate checkboxes for each reagent
-        for (int i = 0; i < checkboxArray.length; i++) {
+        for (int i = 0; i < reagents_array.size(); i++) {
             CheckBox checkbox = new CheckBox(getApplicationContext());
             checkbox.setText(reagents_array.get(i).prettyPrint());
             checkbox.setTextSize(28);
-            checkboxArray[i] = checkbox;
+            checkboxArray.add(checkbox);
+            checkbox.setId(i);
             checkboxLayout.addView(checkbox);
             checkbox.setOnCheckedChangeListener(this);
+            checkbox.setChecked(checkedReagents.get(i));
         }
 
         // If there were previously saved checkboxes that the user ticked before, check them again
         if (flag != 0) {
-            for (CheckBox checkbox : checkboxArray) {
-                for (int i = 0; i < retrievedSelectedReagents.size(); i++) {
-                    if ((checkbox.getText() + "").equals(retrievedSelectedReagents.get(i))) {
-                        checkbox.toggle();
-                    }
-                }
+            for(int i = 0; i < checkboxArray.size(); i++) {
+                checkboxArray.get(i).setChecked(checkedReagents.get(i));
             }
+//            for (CheckBox checkbox : checkboxArray) {
+////                for (int i = 0; i < retrievedSelectedReagents.size(); i++) {
+////                    if ((checkbox.getText() + "").equals(retrievedSelectedReagents.get(i))) {
+////                        checkbox.toggle();
+////                    }
+////                }
+//            }
         }
     }
 
-    public void onCheckedChanged(CompoundButton cb, boolean isChecked) {
-        String checkedText = cb.getText() + "";
+//    public void updateCheckedReagents(){
+//        for(CheckBox checkbox : checkboxArray);
+//    }
+
+    public void onCheckedChanged(CompoundButton checkbox, boolean isChecked) {
+        String checkedText = checkbox.getText() + "";
 
         if (isChecked) {
             selectedReagents.add(checkedText);
-            Toast.makeText(this, cb.getText() + " was selected!", Toast.LENGTH_SHORT).show();
+            checkedReagents.set(checkbox.getId(), true);
+
+//            Toast.makeText(this, cb.getText() + " was selected!", Toast.LENGTH_SHORT).show();
         } else {
             selectedReagents.remove(checkedText);
-            Toast.makeText(this, cb.getText() + " was not selected!", Toast.LENGTH_SHORT).show();
+            checkedReagents.set(checkbox.getId(), false);
+//            Toast.makeText(this, cb.getText() + " was not selected!", Toast.LENGTH_SHORT).show();
         }
     }
 

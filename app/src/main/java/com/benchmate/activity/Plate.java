@@ -24,7 +24,7 @@ public class Plate extends AppCompatActivity {
 
         //        Retrieve experiment object from intent
         Intent intent = getIntent();
-        final Experiment experiment = (Experiment)intent.getSerializableExtra("experiment");
+        final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
 
         buttonSaveCSV = findViewById(R.id.buttonSaveCSV);
         buttonNotes = findViewById(R.id.buttonNotes);
@@ -48,15 +48,12 @@ public class Plate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
-                CharSequence text = "Experiment state saved";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                Toast.makeText(context, "Experiment state saved", Toast.LENGTH_SHORT).show();
             }
         });
 
         String[] wellNames = getResources().getStringArray(R.array.well_names);
+//        ArrayList<String> wellNames = new ArrayList<>(experiment.getWells().keySet());
         GridLayout buttonLayout = findViewById(R.id.btnlyt);
         buttonLayout.setOrientation(GridLayout.VERTICAL);
         // Generate buttons within the GridLayout for every well in the well_names string resource
@@ -65,10 +62,19 @@ public class Plate extends AppCompatActivity {
             Button btn = new Button(this);
             btn.setId(i);
             final int id_ = btn.getId();
+            // Set button text and size
             btn.setText(wellName);
             btn.setTextSize(16);
-            btn.setBackgroundColor(Color.rgb(50, 205, 50));
-
+            // Set button colour based on whether reagents have been checked or not
+            if (experiment.getWells().get(wellName).getSelectedReagents().contains(true)) {
+                if (experiment.getWells().get(wellName).getSelectedReagents().contains(false)) {
+                    btn.setBackgroundColor(Color.rgb(255, 255, 0));
+                } else {
+                    btn.setBackgroundColor(Color.rgb(50, 205, 50));
+                }
+            } else {
+                btn.setBackgroundColor(Color.rgb(255, 0, 0));
+            }
             buttonLayout.addView(btn);
             GridLayout.LayoutParams params = (GridLayout.LayoutParams) btn.getLayoutParams();
             params.height = 115;
@@ -84,7 +90,9 @@ public class Plate extends AppCompatActivity {
                             .show();
                     Intent intent = new Intent(Plate.this, Reagents.class);
                     intent.putExtra("experiment", experiment);
+                    intent.putExtra("wellName", wellName);
                     startActivity(intent);
+                    finish();
                 }
 
             });

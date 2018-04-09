@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/benchmate.iml" filepath="$PROJECT_DIR$/.idea/benchmate.iml" />
-      <module fileurl="file://C:\Users\Mihai\AndroidStudioProjects\benchmate\benchmate.iml" filepath="C:\Users\Mihai\AndroidStudioProjects\benchmate\benchmate.iml" />
     </modules>
   </component>
 </project>

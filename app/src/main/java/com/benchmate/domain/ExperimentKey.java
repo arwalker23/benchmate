@@ -4,7 +4,7 @@ package com.benchmate.domain;
 public class ExperimentKey {
     private String experimentName;
     private String reagentName;
-    private Well well;
+    private WellEnum well;
 
     @Override
     public boolean equals(Object o) {
@@ -54,11 +54,11 @@ public class ExperimentKey {
         this.reagentName = reagentName;
     }
 
-    public Well getWell() {
+    public WellEnum getWell() {
         return well;
     }
 
-    public void setWell(Well well) {
+    public void setWell(WellEnum well) {
         this.well = well;
     }
 }

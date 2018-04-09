@@ -59,8 +59,10 @@ public class Setup extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Setup.this, Plate.class);
                 experiment.setExperimentName(expNameEditText.getText().toString());
+                experiment.initWells();
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
+                finish();
             }
         });
 

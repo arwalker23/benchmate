@@ -46,7 +46,7 @@ public class ExperimentRow {
 
         key.setExperimentName(tokens[0]);
         key.setReagentName(tokens[1]);
-        key.setWell(Well.fromName(tokens[2]));
+        key.setWell(WellEnum.fromName(tokens[2]));
         row.setKey(key);
         try {
             row.setAmount(Double.parseDouble(tokens[3]));
