@@ -1,3 +1,124 @@
 <resources>
-    <string name="app_name">benchmate</string>
+    <string name="app_name">BenchMate</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
+    <string name="reagent_name">Reagent Name</string>
+    <string name="amount">Amount</string>
+    <string name="units">Units</string>
+    <string name="add_reagent">Add Reagent</string>
+    <string name="add_procedure_txt">Add Procedure.txt</string>
+    <string name="start_experiment">Start Experiment</string>
+    <string name="save_as_csv">Save as CSV</string>
+    <string name="procedure">Procedure</string>
+    <string name="notes">Notes</string>
+    <string name="settings">Settings</string>
+    <string name="new_experiment">New Experiment</string>
+    <string name="load_experiment">Load Experiment</string>
+    <string name="load">Load</string>
+    <string name="experiment_list">Experiments</string>
+    <string name="experiment_name">Experiment Name</string>
+    <string-array name="units_array">
+        <item>µL</item>
+        <item>mL</item>
+        <item>mg</item>
+        <item>µg</item>
+    </string-array>
+    <string-array name="well_names">
+        <item>A1</item>
+        <item>A2</item>
+        <item>A3</item>
+        <item>A4</item>
+        <item>A5</item>
+        <item>A6</item>
+        <item>A7</item>
+        <item>A8</item>
+        <item>A9</item>
+        <item>A10</item>
+        <item>A11</item>
+        <item>A12</item>
+        <item>B1</item>
+        <item>B2</item>
+        <item>B3</item>
+        <item>B4</item>
+        <item>B5</item>
+        <item>B6</item>
+        <item>B7</item>
+        <item>B8</item>
+        <item>B9</item>
+        <item>B10</item>
+        <item>B11</item>
+        <item>B12</item>
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5</item>
+        <item>C6</item>
+        <item>C7</item>
+        <item>C8</item>
+        <item>C9</item>
+        <item>C10</item>
+        <item>C11</item>
+        <item>C12</item>
+        <item>D1</item>
+        <item>D2</item>
+        <item>D3</item>
+        <item>D4</item>
+        <item>D5</item>
+        <item>D6</item>
+        <item>D7</item>
+        <item>D8</item>
+        <item>D9</item>
+        <item>D10</item>
+        <item>D11</item>
+        <item>D12</item>
+        <item>E1</item>
+        <item>E2</item>
+        <item>E3</item>
+        <item>E4</item>
+        <item>E5</item>
+        <item>E6</item>
+        <item>E7</item>
+        <item>E8</item>
+        <item>E9</item>
+        <item>E10</item>
+        <item>E11</item>
+        <item>E12</item>
+        <item>F1</item>
+        <item>F2</item>
+        <item>F3</item>
+        <item>F4</item>
+        <item>F5</item>
+        <item>F6</item>
+        <item>F7</item>
+        <item>F8</item>
+        <item>F9</item>
+        <item>F10</item>
+        <item>F11</item>
+        <item>F12</item>
+        <item>G1</item>
+        <item>G2</item>
+        <item>G3</item>
+        <item>G4</item>
+        <item>G5</item>
+        <item>G6</item>
+        <item>G7</item>
+        <item>G8</item>
+        <item>G9</item>
+        <item>G10</item>
+        <item>G11</item>
+        <item>G12</item>
+        <item>H1</item>
+        <item>H2</item>
+        <item>H3</item>
+        <item>H4</item>
+        <item>H5</item>
+        <item>H6</item>
+        <item>H7</item>
+        <item>H8</item>
+        <item>H9</item>
+        <item>H10</item>
+        <item>H11</item>
+        <item>H12</item>
+    </string-array>
 </resources>

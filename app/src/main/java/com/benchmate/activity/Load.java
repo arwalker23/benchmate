@@ -1,29 +1,34 @@
-package com.example.android.benchmate;
+package com.benchmate.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.benchmate.R;
+
 public class Load extends AppCompatActivity {
 
-    private Button buttonOne, buttonTwo;
+    Button buttonLoad, buttonSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
-        buttonOne = (Button)  findViewById(R.id.button1);
-        buttonTwo = (Button)  findViewById(R.id.button2);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        buttonOne.setOnClickListener(new View.OnClickListener() {
+        buttonLoad = findViewById(R.id.buttonLoad);
+        buttonSave = findViewById(R.id.buttonSave);
+
+        buttonLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPlate();
             }
         });
-        buttonTwo.setOnClickListener(new View.OnClickListener() {
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMainActivity();

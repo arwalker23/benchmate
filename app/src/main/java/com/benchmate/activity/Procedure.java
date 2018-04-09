@@ -1,7 +1,10 @@
-package com.example.android.benchmate;
+package com.benchmate.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.benchmate.R;
 
 public class Procedure extends AppCompatActivity {
 
@@ -9,5 +12,6 @@ public class Procedure extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_procedure);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 }
