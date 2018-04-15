@@ -11,7 +11,7 @@ import com.benchmate.R;
 
 public class Load extends AppCompatActivity {
 
-    Button buttonLoad, buttonSave;
+    Button buttonLoad, buttonBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +20,16 @@ public class Load extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         buttonLoad = findViewById(R.id.buttonLoad);
-        buttonSave = findViewById(R.id.buttonSave);
+        buttonBack = findViewById(R.id.buttonBack);
 
-        buttonLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPlate();
-            }
-        });
-        buttonSave.setOnClickListener(new View.OnClickListener() {
+// TODO: add Loading capability
+//        buttonLoad.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openPlate();
+//            }
+//        });
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMainActivity();
@@ -38,9 +39,11 @@ public class Load extends AppCompatActivity {
     public void openPlate(){
         Intent intent = new Intent(this, Plate.class);
         startActivity(intent);
+        finish();
     }
     public void openMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

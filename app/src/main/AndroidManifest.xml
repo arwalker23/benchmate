@@ -19,18 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.benchmate.activity.Setup"
+        <activity
+            android:name="com.benchmate.activity.Setup"
             android:windowSoftInputMode="adjustPan">
+
         </activity>
         <activity android:name="com.benchmate.activity.Load" />
         <activity android:name="com.benchmate.activity.AddReagent" />
         <activity android:name="com.benchmate.activity.Plate" />
-        <activity android:name="com.benchmate.activity.Reagents"
+        <activity
+            android:name="com.benchmate.activity.Reagents"
             android:windowSoftInputMode="adjustPan">
+
         </activity>
-        <activity android:name="com.benchmate.activity.Notes" />
-        <activity android:name="com.benchmate.activity.Procedure" />
-        <activity android:name="com.benchmate.activity.Settings" />
+        <activity
+            android:name="com.benchmate.activity.Notes"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
     </application>
 
 </manifest>

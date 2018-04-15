@@ -39,9 +39,6 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         // Retrieve name of well so Reagents knows which Well object to modify
         final String wellName = intent.getStringExtra("wellName");
 
-        // Debug toast
-//        Toast.makeText(this, "Now viewing well " + experiment.getWells().get(wellName).getName(), Toast.LENGTH_SHORT).show();
-
         // Retrieve checked boxes from experiment class TreeMap "wells"
         checkedReagents = new ArrayList<>(experiment.getWells().get(wellName).getSelectedReagents());
 

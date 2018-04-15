@@ -54,10 +54,6 @@ public class Experiment implements Serializable {
         this.experimentName = experimentName;
     }
 
-    public void setReagents(List<Reagent> reagents) {
-        this.reagents = reagents;
-    }
-
     public TreeMap<String, Well> getWells() {
         return wells;
     }
@@ -102,31 +98,23 @@ public class Experiment implements Serializable {
         StringBuffer commas = new StringBuffer();
         String commaWellHeader = ","; //todo add one more if we add description( or wellName) as user input
 
+        // Add reagent information in header
         for (Reagent reagent : reagents) {
-            //for each we must accommodate 1 columns of name, amount, unitOfMeasure combined
             String reagentString = reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " + reagent.getName();
             commas.append(",");
             commas.append(reagentString);
-//            commas.append(",");
-//            commas.append(",");
         }
-        String experimentHeader = experimentName + commaWellHeader + commas.toString() + lineEnding;
+
         StringBuffer wellsHeaderBuffer = new StringBuffer();
         wellsHeaderBuffer.append("Well").append(",");
         wellsHeaderBuffer.append("Well Name");
         wellsHeaderBuffer.append(commas.toString());
         wellsHeaderBuffer.append(lineEnding);
         String wellsHeader = wellsHeaderBuffer.toString();
+
         // Print CSV body, based on reagents TreeMap
         StringBuffer sbCsvBody = new StringBuffer();
         Well well;
-//        for (Map.Entry<String, Well> pair : wells.entrySet()) {
-//            sbCsvBody.append(toCsvCell(pair.getKey())).append(",");
-//            well = pair.getValue();
-//            sbCsvBody.append(well.getName()).append(",");
-//            ArrayList<Boolean> reagentsSelected = well.getSelectedReagents();
-//                addReagentColumns(lineEnding, sbCsvBody, reagentsSelected);
-//        }
         for (WellEnum wellEnum : WellEnum.values()) {
             String wellName = wellEnum.name();
             sbCsvBody.append(toCsvCell(wellName)).append(",");
@@ -136,19 +124,17 @@ public class Experiment implements Serializable {
             addReagentColumns(lineEnding, sbCsvBody, reagentsSelected);
         }
         String directoryBasePath = ""; //get file internal storage path
-//        String directory = directoryBasePath + "/experiments/";
 
-        // removed experimentHeader
+        // Return the final output
         return (wellsHeader + sbCsvBody.toString()).getBytes("UTF-8");
     }
 
     private void addReagentColumns(String lineEnding, StringBuffer sb, ArrayList<Boolean> reagentsSelected) {
         for (Boolean selected : reagentsSelected) {
+            // Put a 1 if reagent was added, else put a 0
             if (selected) {
                 Reagent reagent = reagents.get(reagentsSelected.indexOf(selected));
                 sb.append("1").append(",");
-//                sb.append(reagent.getAmount()).append(",");
-//                sb.append(reagent.getUnitOfMeasure()).append(",");
             } else {
                 sb.append("0").append(",");
             }

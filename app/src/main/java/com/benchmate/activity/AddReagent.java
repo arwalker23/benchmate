@@ -1,6 +1,5 @@
 package com.benchmate.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.benchmate.R;
 import com.benchmate.domain.Experiment;
@@ -29,12 +29,8 @@ public class AddReagent extends AppCompatActivity {
         Intent intent = getIntent();
         final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
 
-        // Toast to debug
-//        Toast.makeText(this, "Experiment successfully passed: " + experiment.getExperimentName(),
-//                Toast.LENGTH_SHORT).show();
-
-        buttonSave = findViewById(R.id.buttonsave);
-        buttonBack = findViewById(R.id.buttonback);
+        buttonSave = findViewById(R.id.buttonSave);
+        buttonBack = findViewById(R.id.buttonBack);
         spinnerUnits = findViewById(R.id.spinnerUnits);
 
         // Create ArrayAdapter using the units_array and default layout
@@ -50,7 +46,6 @@ public class AddReagent extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = getApplicationContext();
                 // Get values from text boxes
                 String name = reagentName.getText().toString();
                 double amount;
@@ -63,7 +58,7 @@ public class AddReagent extends AppCompatActivity {
                     if (amountStr.isEmpty()) {
                         reagentAmount.setError("Please enter an amount.");
                     }
-                }  else {
+                } else {
                     amount = Double.parseDouble(reagentAmount.getText().toString());
                     Reagent reagent = new Reagent(name, amount, units);
                     experiment.addReagent(reagent);
@@ -71,6 +66,9 @@ public class AddReagent extends AppCompatActivity {
                     // Pass experiment object back
                     Intent intent = new Intent(AddReagent.this, Setup.class);
                     intent.putExtra("experiment", experiment);
+                    Toast.makeText(getApplicationContext(), "Successfully added " +
+                            reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " +
+                            reagent.getName(), Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();
                 }

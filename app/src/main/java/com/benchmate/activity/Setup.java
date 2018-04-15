@@ -13,7 +13,7 @@ import com.benchmate.domain.Experiment;
 
 public class Setup extends AppCompatActivity {
 
-    Button buttonAddReagent, buttonStart, buttonAddProcedure;
+    Button buttonAddReagent, buttonStart;
     EditText expNameEditText;
 
     @Override
@@ -31,14 +31,9 @@ public class Setup extends AppCompatActivity {
             experiment = new Experiment();
         }
 
-//         Debug toast
-//        Toast.makeText(this, "Test of " + experiment.getExperimentName(),
-//                Toast.LENGTH_SHORT).show();
-
         expNameEditText = findViewById(R.id.expNameEditText);
         expNameEditText.setText(experiment.getExperimentName());
         buttonAddReagent = findViewById(R.id.buttonAddReagent);
-        buttonAddProcedure = findViewById(R.id.buttonAddProcedure);
         buttonStart = findViewById(R.id.buttonStart);
 
         buttonAddReagent.setOnClickListener(new View.OnClickListener() {
@@ -61,13 +56,5 @@ public class Setup extends AppCompatActivity {
                 finish();
             }
         });
-
-        // TODO: implement openAddProcedure method and add AddProcedure screen if we want, or scrap procedure entirely
-        //        buttonAddProcedure.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openAddProcedure();
-//            }
-//        });
     }
 }

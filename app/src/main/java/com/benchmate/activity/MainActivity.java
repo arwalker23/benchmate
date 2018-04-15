@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void openSetup(){
+
+    public void openSetup() {
         Intent intent = new Intent(this, Setup.class);
         startActivity(intent);
     }
-    public void openLoad(){
+
+    public void openLoad() {
         Intent intent = new Intent(this, Load.class);
         startActivity(intent);
     }
