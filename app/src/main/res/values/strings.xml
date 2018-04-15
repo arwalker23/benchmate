@@ -17,6 +17,7 @@
     <string name="load">Load</string>
     <string name="experiment_list">Experiments</string>
     <string name="experiment_name">Experiment Name</string>
+    <string name="well_name">Well name</string>
     <string-array name="units_array">
         <item>µL</item>
         <item>mL</item>
