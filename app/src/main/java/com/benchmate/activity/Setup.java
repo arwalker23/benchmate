@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.benchmate.R;
 import com.benchmate.domain.Experiment;
@@ -48,12 +49,17 @@ public class Setup extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Setup.this, Plate.class);
-                experiment.setExperimentName(expNameEditText.getText().toString());
-                experiment.initWells();
-                intent.putExtra("experiment", experiment);
-                startActivity(intent);
-                finish();
+                if (experiment.getReagents().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "You must add at least one reagent.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Setup.this, Plate.class);
+                    experiment.setExperimentName(expNameEditText.getText().toString());
+                    experiment.initWells();
+                    intent.putExtra("experiment", experiment);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }

@@ -32,6 +32,8 @@ public class Notes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Notes.this, Plate.class);
+                String notes = notesText.getText().toString();
+                experiment.setNotes(notes);
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
                 finish();

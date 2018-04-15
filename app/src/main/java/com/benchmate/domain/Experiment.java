@@ -20,6 +20,7 @@ public class Experiment implements Serializable {
     private String experimentName;
     private List<Reagent> reagents;
     private TreeMap<String, Well> wells;
+    private String notes;
 
     // default constructor with no parameters that gets called when Setup screen is created, after
     // "New Experiment" button is pressed on main screen, or when experiment is loaded from file
@@ -27,6 +28,7 @@ public class Experiment implements Serializable {
         this.experimentName = "";
         this.reagents = new ArrayList<>();
         this.wells = new TreeMap<>();
+        this.notes = "";
     }
 
     public boolean addReagent(Reagent reagent) {
@@ -40,6 +42,14 @@ public class Experiment implements Serializable {
 
         reagents.add(reagent);
         return true;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public String getExperimentName() {
@@ -123,6 +133,8 @@ public class Experiment implements Serializable {
             ArrayList<Boolean> reagentsSelected = well.getSelectedReagents();
             addReagentColumns(lineEnding, sbCsvBody, reagentsSelected);
         }
+        String experimentNotes = "\"" + notes + "\"";
+        sbCsvBody.append(lineEnding).append(experimentNotes);
         String directoryBasePath = ""; //get file internal storage path
 
         // Return the final output
