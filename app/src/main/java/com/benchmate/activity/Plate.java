@@ -14,9 +14,11 @@ import android.widget.Toast;
 import com.benchmate.R;
 import com.benchmate.domain.Experiment;
 
+import java.io.File;
+
 public class Plate extends AppCompatActivity {
 
-    Button buttonSaveCSV, buttonNotes, buttonProcedure;
+    Button buttonSaveCSV, buttonNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +26,20 @@ public class Plate extends AppCompatActivity {
         setContentView(R.layout.activity_plate);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        //        Retrieve experiment object from intent
+        // Retrieve experiment object from intent
         Intent intent = getIntent();
         final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
 
         buttonSaveCSV = findViewById(R.id.buttonSaveCSV);
         buttonNotes = findViewById(R.id.buttonNotes);
-        buttonProcedure = findViewById(R.id.buttonProcedure);
 
         buttonNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNotes();
-            }
-        });
-        buttonProcedure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openProcedure();
+                Intent intent = new Intent(Plate.this, Notes.class);
+                intent.putExtra("experiment", experiment);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -49,13 +47,20 @@ public class Plate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Experiment state saved", Toast.LENGTH_SHORT).show();
-                // TODO: save data from classes into a CSV file
+                File file = getExternalFilesDir(null);
+                String directoryBasePath = file.getPath();
+                String filePath = directoryBasePath + "/" + experiment.generateFileName(experiment.getExperimentName(), "csv");
+                try {
+                    experiment.writeDataToFile(filePath, experiment.writeToCsv());
+                    Toast.makeText(context, "Experiment state saved to " + filePath, Toast.LENGTH_SHORT).show();
+                } catch (Exception ex) {
+                    Toast.makeText(context, "Unable to save.", Toast.LENGTH_SHORT).show();
+                    ex.printStackTrace();
+                }
             }
         });
 
         String[] wellNames = getResources().getStringArray(R.array.well_names);
-//        ArrayList<String> wellNames = new ArrayList<>(experiment.getWells().keySet());
         GridLayout buttonLayout = findViewById(R.id.btnlyt);
         buttonLayout.setOrientation(GridLayout.VERTICAL);
         // Generate buttons within the GridLayout for every well in the well_names string resource
@@ -103,16 +108,5 @@ public class Plate extends AppCompatActivity {
             });
             i++;
         }
-
-    }
-
-    public void openNotes() {
-        Intent intent = new Intent(this, Notes.class);
-        startActivity(intent);
-    }
-
-    public void openProcedure() {
-        Intent intent = new Intent(this, Procedure.class);
-        startActivity(intent);
     }
 }

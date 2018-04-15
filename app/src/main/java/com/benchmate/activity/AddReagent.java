@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.benchmate.R;
 import com.benchmate.domain.Experiment;
@@ -28,12 +29,8 @@ public class AddReagent extends AppCompatActivity {
         Intent intent = getIntent();
         final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
 
-        // Toast to debug
-//        Toast.makeText(this, "Experiment successfully passed: " + experiment.getExperimentName(),
-//                Toast.LENGTH_SHORT).show();
-
-        buttonSave = findViewById(R.id.buttonsave);
-        buttonBack = findViewById(R.id.buttonback);
+        buttonSave = findViewById(R.id.buttonSave);
+        buttonBack = findViewById(R.id.buttonBack);
         spinnerUnits = findViewById(R.id.spinnerUnits);
 
         // Create ArrayAdapter using the units_array and default layout
@@ -49,26 +46,32 @@ public class AddReagent extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Use getText from text boxes and bind body into Reagent object fields
+                // Get values from text boxes
                 String name = reagentName.getText().toString();
-
                 double amount;
                 String amountStr = reagentAmount.getText().toString();
-                if (amountStr == null || amountStr.isEmpty()) {
-                    amount = 0.0;
+                String units = spinnerUnits.getSelectedItem().toString();
+
+                // Validate that they are not empty
+                if (name.isEmpty()) {
+                    reagentName.setError("Please enter a reagent name.");
+                    if (amountStr.isEmpty()) {
+                        reagentAmount.setError("Please enter an amount.");
+                    }
                 } else {
                     amount = Double.parseDouble(reagentAmount.getText().toString());
+                    Reagent reagent = new Reagent(name, amount, units);
+                    experiment.addReagent(reagent);
+
+                    // Pass experiment object back
+                    Intent intent = new Intent(AddReagent.this, Setup.class);
+                    intent.putExtra("experiment", experiment);
+                    Toast.makeText(getApplicationContext(), "Successfully added " +
+                            reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " +
+                            reagent.getName(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    finish();
                 }
-
-                String units = spinnerUnits.getSelectedItem().toString();
-                Reagent reagent = new Reagent(name, amount, units);
-                experiment.addReagent(reagent);
-
-                // Pass experiment object back
-                Intent intent = new Intent(AddReagent.this, Setup.class);
-                intent.putExtra("experiment", experiment);
-                startActivity(intent);
-                finish();
             }
         });
 

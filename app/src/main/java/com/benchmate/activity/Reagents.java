@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.benchmate.R;
 import com.benchmate.domain.Experiment;
@@ -22,10 +22,9 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
 
     int flag = 0;
     Button buttonBack, buttonSave;
-//    ArrayList<String> selectedReagents = new ArrayList<>();
-//    ArrayList<String> retrievedSelectedReagents;
     ArrayList<Boolean> checkedReagents;
     ArrayList<CheckBox> checkboxArray = new ArrayList<>();
+    EditText wellLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +35,10 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         // Retrieve experiment object from intent
         Intent intent = getIntent();
         final Experiment experiment = (Experiment) intent.getSerializableExtra("experiment");
+
         // Retrieve name of well so Reagents knows which Well object to modify
         final String wellName = intent.getStringExtra("wellName");
-        // Debug toast
-        Toast.makeText(this, "Now viewing well " + experiment.getWells().get(wellName).getName(), Toast.LENGTH_SHORT).show();
+
         // Retrieve checked boxes from experiment class TreeMap "wells"
         checkedReagents = new ArrayList<>(experiment.getWells().get(wellName).getSelectedReagents());
 
@@ -48,6 +47,9 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
             checkedReagents = (ArrayList<Boolean>) savedInstanceState.getSerializable("checkedReagents");
             flag = savedInstanceState.getInt("savedflag");
         }
+
+        wellLabel = findViewById(R.id.wellName);
+        wellLabel.setText(experiment.getWells().get(wellName).getName());
 
         buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
@@ -67,15 +69,14 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
                 Intent intent = new Intent(Reagents.this, Plate.class);
                 // Handling for selectedFields array, can update the Experiment object TreeMap "wells" accordingly
                 experiment.getWells().get(wellName).setSelectedReagents(checkedReagents);
+                experiment.getWells().get(wellName).setName(wellLabel.getText().toString());
                 intent.putExtra("experiment", experiment);
                 startActivity(intent);
                 finish();
             }
         });
 
-//        String[] reagents_array = getResources().getStringArray(R.array.units_array); // TODO: remove
         List<Reagent> reagents_array = experiment.getReagents();
-//        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()]; // TODO: remove
         LinearLayout checkboxLayout = findViewById(R.id.chkboxlyt);
 
         // Generate checkboxes for each reagent
@@ -95,27 +96,14 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
             for (int i = 0; i < checkboxArray.size(); i++) {
                 checkboxArray.get(i).setChecked(checkedReagents.get(i));
             }
-//            for (CheckBox checkbox : checkboxArray) { TODO: remove
-////                for (int i = 0; i < retrievedSelectedReagents.size(); i++) {
-////                    if ((checkbox.getText() + "").equals(retrievedSelectedReagents.get(i))) {
-////                        checkbox.toggle();
-////                    }
-////                }
-//            }
         }
     }
 
     public void onCheckedChanged(CompoundButton checkbox, boolean isChecked) {
-//        String checkedText = checkbox.getText() + "";
-
         if (isChecked) {
-//            selectedReagents.add(checkedText);
             checkedReagents.set(checkbox.getId(), true);
-//            Toast.makeText(this, cb.getText() + " was selected!", Toast.LENGTH_SHORT).show();
         } else {
-//            selectedReagents.remove(checkedText);
             checkedReagents.set(checkbox.getId(), false);
-//            Toast.makeText(this, cb.getText() + " was not selected!", Toast.LENGTH_SHORT).show();
         }
     }
 

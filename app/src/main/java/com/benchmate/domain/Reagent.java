@@ -33,10 +33,6 @@ public class Reagent implements Serializable {
         return unitOfMeasure;
     }
 
-    public void setUnitOfMeasure(String unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
