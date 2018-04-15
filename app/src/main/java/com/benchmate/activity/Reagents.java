@@ -22,7 +22,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
 
     int flag = 0;
     Button buttonBack, buttonSave;
-//    ArrayList<String> selectedReagents = new ArrayList<>();
+    //    ArrayList<String> selectedReagents = new ArrayList<>();
 //    ArrayList<String> retrievedSelectedReagents;
     ArrayList<Boolean> checkedReagents;
     ArrayList<CheckBox> checkboxArray = new ArrayList<>();
@@ -73,9 +73,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
             }
         });
 
-//        String[] reagents_array = getResources().getStringArray(R.array.units_array); // TODO: remove
         List<Reagent> reagents_array = experiment.getReagents();
-//        CheckBox[] checkboxArray = new CheckBox[reagents_array.size()]; // TODO: remove
         LinearLayout checkboxLayout = findViewById(R.id.chkboxlyt);
 
         // Generate checkboxes for each reagent
@@ -95,27 +93,14 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
             for (int i = 0; i < checkboxArray.size(); i++) {
                 checkboxArray.get(i).setChecked(checkedReagents.get(i));
             }
-//            for (CheckBox checkbox : checkboxArray) { TODO: remove
-////                for (int i = 0; i < retrievedSelectedReagents.size(); i++) {
-////                    if ((checkbox.getText() + "").equals(retrievedSelectedReagents.get(i))) {
-////                        checkbox.toggle();
-////                    }
-////                }
-//            }
         }
     }
 
     public void onCheckedChanged(CompoundButton checkbox, boolean isChecked) {
-//        String checkedText = checkbox.getText() + "";
-
         if (isChecked) {
-//            selectedReagents.add(checkedText);
             checkedReagents.set(checkbox.getId(), true);
-//            Toast.makeText(this, cb.getText() + " was selected!", Toast.LENGTH_SHORT).show();
         } else {
-//            selectedReagents.remove(checkedText);
             checkedReagents.set(checkbox.getId(), false);
-//            Toast.makeText(this, cb.getText() + " was not selected!", Toast.LENGTH_SHORT).show();
         }
     }
 

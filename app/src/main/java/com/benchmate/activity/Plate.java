@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.benchmate.R;
 import com.benchmate.domain.Experiment;
 
+import java.io.File;
+
 public class Plate extends AppCompatActivity {
 
     Button buttonSaveCSV, buttonNotes, buttonProcedure;
@@ -49,8 +51,17 @@ public class Plate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Experiment state saved", Toast.LENGTH_SHORT).show();
-                // TODO: save data from classes into a CSV file
+                File file = getExternalFilesDir(null);
+                String directoryBasePath = file.getPath();
+//                String directory = directoryBasePath + "/experiments/";
+                String filePath = directoryBasePath + "/" + experiment.generateFileName(experiment.getExperimentName(), "csv");
+                try {
+                    experiment.writeDataToFile(filePath, experiment.writeToCsv());
+                    Toast.makeText(context, "Experiment state saved to " + filePath, Toast.LENGTH_SHORT).show();
+                } catch (Exception ex) {
+                    Toast.makeText(context, "Unable to save.", Toast.LENGTH_SHORT).show();
+                    ex.printStackTrace();
+                }
             }
         });
 

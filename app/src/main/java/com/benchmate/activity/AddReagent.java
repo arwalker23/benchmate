@@ -1,5 +1,6 @@
 package com.benchmate.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,26 +50,30 @@ public class AddReagent extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Use getText from text boxes and bind body into Reagent object fields
+                Context context = getApplicationContext();
+                // Get values from text boxes
                 String name = reagentName.getText().toString();
-
                 double amount;
                 String amountStr = reagentAmount.getText().toString();
-                if (amountStr == null || amountStr.isEmpty()) {
-                    amount = 0.0;
-                } else {
-                    amount = Double.parseDouble(reagentAmount.getText().toString());
-                }
-
                 String units = spinnerUnits.getSelectedItem().toString();
-                Reagent reagent = new Reagent(name, amount, units);
-                experiment.addReagent(reagent);
 
-                // Pass experiment object back
-                Intent intent = new Intent(AddReagent.this, Setup.class);
-                intent.putExtra("experiment", experiment);
-                startActivity(intent);
-                finish();
+                // Validate that they are not empty
+                if (name.isEmpty()) {
+                    reagentName.setError("Please enter a reagent name.");
+                    if (amountStr.isEmpty()) {
+                        reagentAmount.setError("Please enter an amount.");
+                    }
+                }  else {
+                    amount = Double.parseDouble(reagentAmount.getText().toString());
+                    Reagent reagent = new Reagent(name, amount, units);
+                    experiment.addReagent(reagent);
+
+                    // Pass experiment object back
+                    Intent intent = new Intent(AddReagent.this, Setup.class);
+                    intent.putExtra("experiment", experiment);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
