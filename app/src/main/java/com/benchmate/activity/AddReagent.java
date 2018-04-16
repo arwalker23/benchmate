@@ -61,16 +61,19 @@ public class AddReagent extends AppCompatActivity {
                 } else {
                     amount = Double.parseDouble(reagentAmount.getText().toString());
                     Reagent reagent = new Reagent(name, amount, units);
-                    experiment.addReagent(reagent);
-
-                    // Pass experiment object back
-                    Intent intent = new Intent(AddReagent.this, Setup.class);
-                    intent.putExtra("experiment", experiment);
-                    Toast.makeText(getApplicationContext(), "Successfully added " +
-                            reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " +
-                            reagent.getName(), Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                    finish();
+                    // Ensure reagent was added successfully (no duplicates)
+                    if (experiment.addReagent(reagent)) {
+                        // Pass experiment object back
+                        Intent intent = new Intent(AddReagent.this, Setup.class);
+                        intent.putExtra("experiment", experiment);
+                        Toast.makeText(getApplicationContext(), "Successfully added " +
+                                reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " +
+                                reagent.getName(), Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        reagentName.setError("Duplicate name. Please enter a new reagent.");
+                    }
                 }
             }
         });

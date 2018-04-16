@@ -21,6 +21,7 @@ public class Experiment implements Serializable {
     private List<Reagent> reagents;
     private TreeMap<String, Well> wells;
     private String notes;
+    public static final String LINE_ENDING = "\r\n";
 
     // default constructor with no parameters that gets called when Setup screen is created, after
     // "New Experiment" button is pressed on main screen, or when experiment is loaded from file
@@ -35,11 +36,10 @@ public class Experiment implements Serializable {
         if (reagents == null) {
             reagents = new ArrayList<>();
         }
+        // Check for duplicate reagents
         if (reagents.contains(reagent)) {
-            System.out.println("Reagent already exists. Duplicate reagents not allowed.");
             return false;
         }
-
         reagents.add(reagent);
         return true;
     }
@@ -104,25 +104,24 @@ public class Experiment implements Serializable {
     }
 
     public byte[] writeToCsv() throws IOException {
-        final String lineEnding = "\r\n"; //todo : maybe make me public static final LINE_ENDING out of here
-        StringBuffer commas = new StringBuffer();
-        String commaWellHeader = ","; //todo add one more if we add description( or wellName) as user input
 
         // Add reagent information in header
+        StringBuffer commas = new StringBuffer();
         for (Reagent reagent : reagents) {
             String reagentString = reagent.getAmount() + " " + reagent.getUnitOfMeasure() + " " + reagent.getName();
             commas.append(",");
             commas.append(reagentString);
         }
 
+        // Write CSV header
         StringBuffer wellsHeaderBuffer = new StringBuffer();
         wellsHeaderBuffer.append("Well").append(",");
         wellsHeaderBuffer.append("Well Name");
         wellsHeaderBuffer.append(commas.toString());
-        wellsHeaderBuffer.append(lineEnding);
+        wellsHeaderBuffer.append(LINE_ENDING);
         String wellsHeader = wellsHeaderBuffer.toString();
 
-        // Print CSV body, based on reagents TreeMap
+        // Write CSV body, based on reagents TreeMap
         StringBuffer sbCsvBody = new StringBuffer();
         Well well;
         for (WellEnum wellEnum : WellEnum.values()) {
@@ -131,11 +130,10 @@ public class Experiment implements Serializable {
             well = wells.get(wellName);
             sbCsvBody.append(well.getName()).append(",");
             ArrayList<Boolean> reagentsSelected = well.getSelectedReagents();
-            addReagentColumns(lineEnding, sbCsvBody, reagentsSelected);
+            addReagentColumns(LINE_ENDING, sbCsvBody, reagentsSelected);
         }
         String experimentNotes = "\"" + notes + "\"";
-        sbCsvBody.append(lineEnding).append(experimentNotes);
-        String directoryBasePath = ""; //get file internal storage path
+        sbCsvBody.append(LINE_ENDING).append(experimentNotes);
 
         // Return the final output
         return (wellsHeader + sbCsvBody.toString()).getBytes("UTF-8");
@@ -145,7 +143,6 @@ public class Experiment implements Serializable {
         for (Boolean selected : reagentsSelected) {
             // Put a 1 if reagent was added, else put a 0
             if (selected) {
-                Reagent reagent = reagents.get(reagentsSelected.indexOf(selected));
                 sb.append("1").append(",");
             } else {
                 sb.append("0").append(",");

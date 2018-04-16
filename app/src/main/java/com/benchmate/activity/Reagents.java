@@ -77,7 +77,7 @@ public class Reagents extends Activity implements CompoundButton.OnCheckedChange
         });
 
         List<Reagent> reagents_array = experiment.getReagents();
-        LinearLayout checkboxLayout = findViewById(R.id.chkboxlyt);
+        LinearLayout checkboxLayout = findViewById(R.id.checkboxLayout);
 
         // Generate checkboxes for each reagent
         for (int i = 0; i < reagents_array.size(); i++) {
