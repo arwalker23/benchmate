@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         buttonNew = findViewById(R.id.buttonNew);
-        buttonLoad = findViewById(R.id.buttonLoad);
+//        buttonLoad = findViewById(R.id.buttonLoad); // TODO: add loading
 
         buttonNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
                 openSetup();
             }
         });
-        buttonLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLoad();
-            }
-        });
+//        buttonLoad.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openLoad();
+//            }
+//        });
     }
 
     public void openSetup() {
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openLoad() {
-        Intent intent = new Intent(this, Load.class);
-        startActivity(intent);
-    }
+//    public void openLoad() {
+//        Intent intent = new Intent(this, Load.class);
+//        startActivity(intent);
+//    }
 }

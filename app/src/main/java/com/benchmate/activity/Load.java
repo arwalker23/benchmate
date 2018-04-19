@@ -19,10 +19,10 @@ public class Load extends AppCompatActivity {
         setContentView(R.layout.activity_load);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        buttonLoad = findViewById(R.id.buttonLoad);
+//        buttonLoad = findViewById(R.id.buttonLoad);
         buttonBack = findViewById(R.id.buttonBack);
 
-// TODO: add Loading capability
+// TODO: add Loading capability in future updates
 //        buttonLoad.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
