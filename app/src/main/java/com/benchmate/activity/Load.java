@@ -15,6 +15,9 @@ public class Load extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -36,12 +39,14 @@ public class Load extends AppCompatActivity {
             }
         });
     }
-    public void openPlate(){
+
+    public void openPlate() {
         Intent intent = new Intent(this, Plate.class);
         startActivity(intent);
         finish();
     }
-    public void openMainActivity(){
+
+    public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

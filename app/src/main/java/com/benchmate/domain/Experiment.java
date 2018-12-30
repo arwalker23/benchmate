@@ -1,13 +1,9 @@
 package com.benchmate.domain;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -152,7 +148,7 @@ public class Experiment implements Serializable {
     }
 
     /**
-     * //todo put me in a CsvUtils class
+     *
      * generate  file Name
      *
      * @return the name of the file
@@ -162,7 +158,6 @@ public class Experiment implements Serializable {
         return fileNamePrefix + currentDate + "." + extension;
     }
 
-    //todo put me in a CsvUtils class
     public static StringBuffer toCsvCell(Object obj) {
         StringBuffer csvCell = new StringBuffer();
         if (obj != null) {
@@ -171,7 +166,6 @@ public class Experiment implements Serializable {
         return csvCell;
     }
 
-    //todo maybe put me in the same util class as CsvUtils, or DateUtils
     public static String format(Date date, String format) {
         String formattedDate = null;
         if (date != null) {
@@ -182,7 +176,7 @@ public class Experiment implements Serializable {
     }
 
     /**
-     * //todo put me in a CsvUtils class
+     *
      * Writes the content to a file specified by a full path
      */
     public static void writeDataToFile(String filePath, byte[] content) throws IOException {
@@ -197,53 +191,6 @@ public class Experiment implements Serializable {
                     os.close();
                 } catch (IOException ignored) {
                 }
-            }
-        }
-    }
-
-    //todo put me in a CsvUtils class
-    public static void writeDataToStream(OutputStream stream, byte[] content) throws IOException {
-        BufferedOutputStream os = null;
-        try {
-            os = new BufferedOutputStream(new DataOutputStream(stream));
-            os.write(content);
-            os.flush();
-        } finally {
-            if (os != null) {
-                try {
-                    os.close();
-                } catch (IOException ignored) {
-                }
-            }
-        }
-    }
-
-    /*
-     * todo: use this method if you deliver the csv body as string not as byte[], writeToCsv
-     * */
-    public static void writeToFile(String outputPath, String csvContent) {
-        BufferedWriter bufferedWriter = null;
-
-        try {
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputPath)));
-            bufferedWriter.write(csvContent);
-            bufferedWriter.close();
-        } catch (FileNotFoundException ex) {
-            //log or tell the exception to user
-            ex.printStackTrace();
-        } catch (IOException e) {
-            //log or tell the exception to user
-            e.printStackTrace();
-        } finally {
-            //Close the BufferedWriter
-            try {
-                if (bufferedWriter != null) {
-                    // writer.flush();
-                    bufferedWriter.close();
-                }
-            } catch (IOException e) {
-                //todo: decide how we handle this case.
-                e.printStackTrace();
             }
         }
     }
